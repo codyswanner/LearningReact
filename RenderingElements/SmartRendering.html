@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    </head>
+    <body>
+        <div id="my-react-app"></div>
+    
+        <script type="text/babel">
+            const nail_str = "Nail";
+            const mothwing_str = "Mothwing Cloak";
+            const mantis_str = "Mantis Claw";
+
+            const knight_image = 'images/knight.jpg'
+
+            function on_tick() {
+
+                const image_el = (
+                    <div className="my-time">
+                        Current Time: {new Date().toLocaleTimeString()}
+                        <img src= {knight_image} width="500px"/>
+                    </div>
+                );
+
+                var abilities = ['Monarch Wings', 'Vengeful Spirit', 'Desolate Dive', 'Crystal Heart', 'Lumafly Lantern', 'King\'s Brand']
+                var ability_1 = abilities[Math.floor(Math.random() * abilities.length)];
+                const ability_index = abilities.indexOf(ability_1);
+                abilities.splice(ability_index, 1);
+                var ability_2 = abilities[Math.floor(Math.random() * abilities.length)];
+
+                const ability_list = (
+                    <div>
+                        <div key="el-key" >Some items and abilities of the knight</div>
+                        <ul>
+                            <li key="Nail_key">{nail_str}</li>
+                            <li key="Moth_key">{mothwing_str}</li>
+                            <li key="Ability_1_key">{ability_1}</li>
+                            <li key="Ability_2_key" className="knight-ability">{ability_2}</li>
+                        </ul>
+                        <div>
+                        {image_el}
+                        </div>
+                    </div>
+                );
+
+                ReactDOM.render(ability_list, document.getElementById("my-react-app"));
+
+            }
+
+            setInterval(on_tick, 1000);
+        </script>
+
+    </body>
+</html>
